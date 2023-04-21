@@ -20,7 +20,7 @@
     ```
     docker build -t {name_of_the_image}:{tag_for_image} {path}
 
-    docker build -t test:pandas .
+    docker build -t testL
     ```
 2. To run a docker image:
    * -it: invoke in interactive command line
