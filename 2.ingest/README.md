@@ -22,6 +22,7 @@ services:
 ```
 
 
+1. Run docker container to connect with Postgres
 ```
 docker run -it \
   -e POSTGRES_USER="root" \
@@ -32,6 +33,9 @@ docker run -it \
   postgres:13
 ```
 
-1. Install pgcli using ```pip3 install pgcli``` to access the Postgres Database
-2. Command to run invoke Postgres database using pgcli:
+2. Install pgcli using ```pip3 install pgcli``` to access the Postgres Database
+3. Command to run invoke Postgres database using pgcli:
    1. pgcli -h localhost -p 5432 -u root -d ny_taxi
+   2. Downlad Jupyter using ```pip3 install jupyter```
+   3. Instantiate Jupyter notebook using ```python3 -m notebook```
+   4. Download dataset using ```wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz ```
