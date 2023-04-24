@@ -2,6 +2,7 @@
 .idea
 *.tfstate
 *.csv
+*.gz
 *.tfstate.*
 **.terraform
 **.terraform.lock.*
