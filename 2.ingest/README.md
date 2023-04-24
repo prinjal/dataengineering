@@ -39,3 +39,6 @@ docker run -it \
    2. Downlad Jupyter using ```pip3 install jupyter```
    3. Instantiate Jupyter notebook using ```python3 -m notebook```
    4. Download dataset using ```wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz ```
+   5. pip3 install psycopg2-binary
+   6. pip3 install sqlalchemy
+4. The next step is to load data from jupyter notebook using pandas to Postgresql which has been done in the [upload_data.ipynb](2.ingest/upload_data.ipynb)
