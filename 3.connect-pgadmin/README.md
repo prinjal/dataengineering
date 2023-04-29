@@ -3,7 +3,7 @@
   
 &nbsp;
 
-<details> <summary>How to connect with pgAdmin?</summary>
+<details> <summary>How to connect with pgAdmin? (template)</summary>
 
 ```shell
 docker run -it \
