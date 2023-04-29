@@ -1,15 +1,21 @@
 ## What is pgAdmin?
 * PGAdmin is a web-based Graphical User Interface (GUI) management application used to communicate with Postgres and derivative relational databases on both local and remote servers.
   
+&nbsp;
 
-## How to connect with pgAdmin?
-```
+<details> <summary>How to connect with pgAdmin? (template)</summary>
+
+```shell
 docker run -it \
   -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" \
   -e PGADMIN_DEFAULT_PASSWORD="root" \
   -p 8080:80 \
   dpage/pgadmin4
 ```
+</details>
+
+&nbsp;
+
 
 ### Running postgres and pgAdmin together
 
