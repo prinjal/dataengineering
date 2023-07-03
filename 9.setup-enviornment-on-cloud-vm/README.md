@@ -1,15 +1,15 @@
 ## Setting Up Environment on Cloud VM
 
 1. Create a ssh key using the below command:
-   ```ssh
+   ```shell
    ssh-keygen -t rsa -f ~/.ssh/{SSH_KEY_FILENAME} -C {USERNAME} -b 2048
    ```
 2. Change directory to /Users/{USERNAME}/.ssh
-   ```ssh
+   ```shell
    cd /Users/{USERNAME}/.ssh
    ```
 3. Copy public key using the below command:
-   ```ssh
+   ```shell
    cat /Users/{USERNAME}/.ssh/SSH_KEY_FILENAME.pub
    ```
 4. Navigate to compute engine in GCP and in metadata, add the copied public key under SSH keys
@@ -28,28 +28,28 @@
 
 1. Copy the External IP from the VM instance
 2. SSH into instance (-i means identity)
-   ```ssh
+   ```shell
    ssh -i ~/.ssh/gcp {USERNAME}@{EXTERNAL_IP}
    ```
 3. To check the configuration fo the machine:
-   ```ssh
+   ```shell
    htop
    ```
 4. Use the below code sequentially to download anaconda in cloud machine
-   ```ssh
+   ```shell
    wget https://repo.anaconda.com/archive/Anaconda3-2023.03-1-Linux-x86_64.sh
    ```
-   ```ssh
+   ```shell
    bash Anaconda3-2023.03-1-Linux-x86_64.sh
    ```
 5. Create a config file for SSH
    ```
    cd {LOCATION_TO_SSH_FOLDER/LOCATION_TO HOME/.ssh/config}
    ```
-   ```ssh
+   ```shell
    touch config
    ```
-   ```ssh
+   ```shell
    code config
    ```
 6. Below configuration needs to be added to the file
@@ -68,10 +68,10 @@
    ```
 
 7. Install docker in cloud VM
-   ```ssh
+   ```shell
    sudo apt-get update
    ```
-   ```ssh
+   ```shell
    sudo apt-get install docker.io
    ```
 
@@ -82,10 +82,10 @@
 10. Install docker compose from [this](https://github.com/docker/compose/releases) link
     1.  Download the latest version by copying the link of linu-x86
     2.  Create a new folder bin in the cloud vm
-         ```ssh
+         ```shell
          mkdir bin
          ```
-         ```ssh
+         ```shell
          cd bin
          ```
     3. Use the below comand to install docker compose
@@ -93,7 +93,7 @@
        wget https://github.com/docker/compose/releases/download/v2.19.0/docker-compose-darwin-x86_64 -O docker-compose
        ```
     4. Make this file executable
-       ```ssh
+       ```shell
        chmod +x docker-compose
        ```
     5. Make the bin directory executable by opening .bashrc with nano/vim and    add the below path at the end
@@ -101,21 +101,21 @@
        export PATH="${HOME}/bin:${PATH}"
        ```
     6. Clone this github repository to the cloud vm
-       ```ssh
+       ```shell
        git clone https://github.com/prinjal/dataengineering.git 
        ```
     7. Change Directory to 5_6.running-postgres-pgadmin-with-docker-compose_sql-refresher
     8. Instantiate docker-compose up
     9. Try connecting with database using below command:
-         ```ssh
+         ```shell
          pgcli -h localhost  -u root -d ny_taxi
          ```
 
  11. Install pgcli using conda:
-      ```ssh
+      ```shell
       conda install -c conda-forge pgcli
       ```  
-      ```ssh
+      ```shell
       pip install -U mycli
       ```
 
@@ -130,3 +130,49 @@
 </details>
 
 
+<details><summary>Run the ingestion script on cloud vm</summary>
+
+1. Download the data with below command:
+   ```shell
+   wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz
+   ```
+
+2. Use below to extract the file:
+   ```shell
+   gzip -d "filename"
+   ```
+
+3. Run the [upload_data.ipynb](./2.ingest/upload_data.ipynb) Jupyter notebook
+
+4. Install Terraform from [here](https://developer.hashicorp.com/terraform/downloads) for linux AMD64
+</details>
+
+
+<details><summary>Configure gcloud cli on cloud VM</summary>
+
+1. Change directory to gcp-service-account-auth-key under res
+2. sftp to remote using:
+   ```shell
+   sftp {HOSTNAME}
+   ```
+3. Make .gc directory and change pwd to that directory
+4. Use the below command to copy the non-auth gcp key:
+   ```shell
+   put {NAME_OF_GCP_KEY.json}
+   ```
+5. Export google application credentials using below command:
+   ```shell
+   export GOOGLE_APPLICATION_CREDENTIALS={ABSOLUTE_PATH.json}
+   ```
+6. Authenticate gcloud using below command:
+   ```shell
+   gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+   ```
+7. Move to terraform directory and run init, plan, and apply to replicate the state file as in local machine
+   1. The above will get the state of the cloud resources and create terraform.tfstate, and terraform.lock files to maintain integrity between local and cloud machine
+8. Stop the vm:
+   ```shell
+   sudo shutdown
+   ```
+
+</details>
