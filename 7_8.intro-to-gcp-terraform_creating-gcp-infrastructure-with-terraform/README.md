@@ -95,3 +95,17 @@ For this course, we'll use a free version (upto EUR 300 credits).
 Continue [here](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_1_basics_n_setup/1_terraform_gcp): `week_1_basics_n_setup/1_terraform_gcp/terraform`
 
 </details>
+
+<details><summary>Configuring Terraform</summary>
+
+* Run the below commands sequentially
+  1. ```shell
+      terraform init
+     ```
+  2. ```shell
+      terraform plan
+     ```
+  3. ```shell
+      terraform apply
+     ```
+</details>
