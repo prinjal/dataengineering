@@ -24,7 +24,7 @@
 
 </details>
 
-<details><summary> SSH into VM Instance</summary>
+<details><summary> SSH into VM Instance and configure it</summary>
 
 1. Copy the External IP from the VM instance
 2. SSH into instance (-i means identity)
@@ -44,7 +44,7 @@
    ```
 5. Create a config file for SSH
    ```
-   cd {LOCATION_TO_SSH_FOLDER}
+   cd {LOCATION_TO_SSH_FOLDER/LOCATION_TO HOME/.ssh/config}
    ```
    ```ssh
    touch config
@@ -99,10 +99,34 @@
     5. Make the bin directory executable by opening .bashrc with nano/vim and    add the below path at the end
        ```
        export PATH="${HOME}/bin:${PATH}"
-       ``` 
-    12. Clone this github repository to the cloud vm
-       ```ssh
-       git clone 
        ```
+    6. Clone this github repository to the cloud vm
+       ```ssh
+       git clone https://github.com/prinjal/dataengineering.git 
+       ```
+    7. Change Directory to 5_6.running-postgres-pgadmin-with-docker-compose_sql-refresher
+    8. Instantiate docker-compose up
+    9. Try connecting with database using below command:
+         ```ssh
+         pgcli -h localhost  -u root -d ny_taxi
+         ```
+
+ 11. Install pgcli using conda:
+      ```ssh
+      conda install -c conda-forge pgcli
+      ```  
+      ```ssh
+      pip install -U mycli
+      ```
+
 </details>
+
+<details><summary>Forward a port using VScode</summary>
+
+* From the remote server right besides TERMINAL, click on the PORTS tab.
+* Add a port forwarding rule using +
+* Add 8080 (or any port that need to be forwarded) and press enter
+
+</details>
+
 
